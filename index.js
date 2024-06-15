@@ -1,5 +1,7 @@
+#! /usr/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
+// class BankAccount implements 
 class BankAccount {
     accountNumber;
     balance;
@@ -7,6 +9,7 @@ class BankAccount {
         this.accountNumber = accountNumber;
         this.balance = balance;
     }
+    // withdraw method for BankAccount
     withdraw(amount) {
         if (this.balance >= amount) {
             this.balance -= amount;
@@ -16,6 +19,7 @@ class BankAccount {
             console.log("insufficient balance");
         }
     }
+    // deposit balance into account
     deposit(amount) {
         if (amount > 100) {
             amount -= 1;
@@ -23,10 +27,12 @@ class BankAccount {
             console.log(chalk.magenta.bold.italic(`Deposit of $${amount} successful. your remaining balance is $${this.balance}`));
         }
     }
+    // check balance method for BankAccount
     checkbalance() {
         console.log(chalk.green.bold.italic(`Your Current Balance Is $${this.balance}`));
     }
 }
+// class Customer implements BankAccount
 class Customer {
     firstName;
     lastName;
@@ -53,6 +59,7 @@ const customers = [
     new Customer("Hina", "Naseer", 30, "Female", 12345600, accounts[1]),
     new Customer("Ayesha", "Iqbal", 24, "Female", 123456700, accounts[2]),
 ];
+// function getCustomer 
 async function service() {
     while (true) {
         const accountNumberInput = await inquirer.prompt([
@@ -73,6 +80,7 @@ async function service() {
                     choices: ["Withdraw", "Deposit", "Check Balance", "Exit"],
                 }
             ]);
+            // using switch statement to determine if the user  has already confirmed
             switch (ans.action) {
                 case "Withdraw":
                     const withdrawAmount = await inquirer.prompt([
